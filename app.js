@@ -7,6 +7,7 @@ function Post(id, title, body) {
 function store() {
     let posts = [];
     let nextId = 1;
+    let editingPostId = null;
 
     function setPosts(_posts) {
         posts = _posts;
@@ -34,13 +35,23 @@ function store() {
         return nextId;
     }
 
+    function setEditingPostId(id) {
+        editingPostId = id;
+    }
+
+    function isPostBeingEdited(id) {
+        return editingPostId === id;
+    }
+
     return {
         setPosts,
         addPost,
         getPosts,
         updatePost,
         deletePost,
-        getNextId
+        getNextId,
+        setEditingPostId,
+        isPostBeingEdited
     };
 }
 

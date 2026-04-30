@@ -123,3 +123,24 @@ async function deletePost(id) {
         console.error('Error deleting post:', err);
     }
 }
+
+
+
+function fillPosts(posts) {
+
+    document.getElementById('formTitle').textContent = 'Edit Post';
+    document.getElementById('submitBtn').textContent = 'Update Post';
+    document.getElementById('postId').value = post.title;
+    document.getElementById('titleInput').value = post.title;
+    document.getElementById('bodyInput').value = post.body;
+    document.getElementById('cancelBtn').classList.remove('hidden');
+}
+
+function clearForm() {
+    document.getElementById('formTitle').textContent = 'Add New Post';
+    document.getElementById('submitBtn').textContent = 'Add Post';
+    document.getElementById('postId').value = '';
+    document.getElementById('titleInput').value = '';
+    document.getElementById('bodyInput').value = '';
+    document.getElementById('cancelBtn').classList.add('hidden');
+}

@@ -25,7 +25,7 @@ function store() {
     }
 
     function addPost(post) {
-        posts.push(post);
+        posts.unshift(post);
         nextId++;
     }
 
@@ -151,11 +151,10 @@ async function deletePost(id) {
 
 
 
-function fillPosts(posts) {
-
+function fillForm(post) {
     document.getElementById('formTitle').textContent = 'Edit Post';
     document.getElementById('submitBtn').textContent = 'Update Post';
-    document.getElementById('postId').value = post.title;
+    document.getElementById('postId').value = post.id;
     document.getElementById('titleInput').value = post.title;
     document.getElementById('bodyInput').value = post.body;
     document.getElementById('cancelBtn').classList.remove('hidden');
@@ -169,6 +168,23 @@ function clearForm() {
     document.getElementById('bodyInput').value = '';
     document.getElementById('cancelBtn').classList.add('hidden');
 }
+
+function handleSubmitForm(event) {
+    event.preventDefault();
+    const postId = parseInt(document.getElementById('postId').value);
+    const title = document.getElementById('titleInput').value;
+    const body = document.getElementById('bodyInput').value;
+    let post;
+    if(isNaN(postId)) {
+        post = new Post(postStore.getNextId(), title, body);
+    } else {
+        post = new Post(postId, title, body);
+    }
+    postStore.addPost(post);
+    renderPosts();
+    clearForm();
+}
+
 function renderPosts() {
     const postList = document.querySelector('#postsContainer');
     postList.innerHTML = '';

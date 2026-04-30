@@ -4,10 +4,20 @@ function Post(id, title, body) {
     this.body = body;
 }
 
+Post.prototype.toDomElement = function() {
+    return `
+        <div class="post-card">
+            <h3>${this.title}</h3>
+            <p>${this.body}</p>
+        </div>
+    `
+}
+
 function store() {
     let posts = [];
     let nextId = 1;
     let editingPostId = null;
+    let loading = false;
 
     function setPosts(_posts) {
         posts = _posts;
@@ -43,6 +53,19 @@ function store() {
         return editingPostId === id;
     }
 
+    function setLoading(isLoading) {
+        loading = isLoading;
+        if(loading) {
+            document.querySelector('#loadingMessage').classList.remove('hidden');
+        } else {
+            document.querySelector('#loadingMessage').classList.add('hidden');
+        }
+    }
+
+    function isLoading() {
+        return loading;
+    }
+
     return {
         setPosts,
         addPost,
@@ -51,7 +74,9 @@ function store() {
         deletePost,
         getNextId,
         setEditingPostId,
-        isPostBeingEdited
+        isPostBeingEdited,
+        setLoading,
+        isLoading
     };
 }
 
@@ -144,3 +169,24 @@ function clearForm() {
     document.getElementById('bodyInput').value = '';
     document.getElementById('cancelBtn').classList.add('hidden');
 }
+function renderPosts() {
+    const postList = document.querySelector('#postsContainer');
+    postList.innerHTML = '';
+    const postsElements = [];
+    postStore.getPosts().forEach(post => {
+        postsElements.push(post.toDomElement());
+    });
+    postList.innerHTML = postsElements.join(' ');
+}
+
+async function init() {
+    postStore.setLoading(true);
+    const loadedPosts = await getPosts();
+    postStore.setPosts(loadedPosts.map(post => new Post(post.id, post.title, post.body)));
+    renderPosts();
+    postStore.setLoading(false);
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+    await init();
+});

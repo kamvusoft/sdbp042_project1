@@ -1,6 +1,4 @@
-======================================================
-WHAT ARE YOU BUILDING?
-======================================================
+### WHAT ARE YOU BUILDING?
 
 You are building a simple "Posts App"
 
@@ -32,10 +30,7 @@ After ANY action:
 ------------------------------------------------------
 
 
-
-======================================================
-HOW THE APP IS BUILT
-======================================================
+### HOW THE APP IS BUILT
 
 The app is split into 4 parts:
 
@@ -55,9 +50,7 @@ APP   = control flow
 
 
 
-======================================================
-- [ ] PART 1: STATE (CLOSURE)
-======================================================
+## PART 1: STATE (CLOSURE)
 
 This stores your data privately.
 
@@ -74,9 +67,7 @@ UI must NOT store data.
 
 
 
-======================================================
-PART 2: API
-======================================================
+## PART 2: API
 
 This ONLY sends requests.
 
@@ -94,9 +85,7 @@ YOU must update STATE yourself.
 
 
 
-======================================================
-PART 3: UI
-======================================================
+## PART 3: UI
 
 This ONLY controls what user sees.
 
@@ -111,10 +100,7 @@ UI should NOT store posts
 It ONLY displays what STATE gives it
 
 
-
-======================================================
-PART 4: APP (MAIN LOGIC)
-======================================================
+## PART 4: APP (MAIN LOGIC)
 
 This connects everything.
 
@@ -128,9 +114,7 @@ This is where everything comes together
 
 
 
-======================================================
-EXACT STEPS YOU MUST FOLLOW
-======================================================
+### EXACT STEPS YOU MUST FOLLOW
 
 STEP 1: LOAD POSTS
 - Call API to get posts
@@ -182,9 +166,7 @@ STEP 7: SEARCH
 
 
 
-======================================================
-MOST COMMON MISTAKES (AVOID THESE)
-======================================================
+### MOST COMMON MISTAKES (AVOID THESE)
 
 - Expecting API to save data
 - Not updating STATE after API call
@@ -195,9 +177,7 @@ MOST COMMON MISTAKES (AVOID THESE)
 
 
 
-======================================================
-FINAL RULE (REMEMBER THIS)
-======================================================
+### FINAL RULE (REMEMBER THIS)
 
 STATE controls everything
 
@@ -205,5 +185,3 @@ If UI is wrong → STATE is wrong
 
 ALWAYS:
 change STATE → then render UI
-
-======================================================

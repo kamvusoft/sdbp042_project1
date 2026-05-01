@@ -14,7 +14,7 @@
     <section class="form-section">
       <h2 id="formTitle">Add New Post</h2>
 
-      <form id="postForm" onsubmit="handleSubmitForm(event);">
+      <form id="postForm">
         <input type="hidden" id="postId" />
 
         <div class="form-group">
@@ -57,6 +57,9 @@
     </section>
   </div>
 
-  <script src="app.js"></script>
+  <script type="module" src="lib/model.js"></script>
+  <script type="module" src="lib/store.js"></script>
+  <script type="module" src="lib/api.js"></script>
+  <script type="module" src="app.js"></script>
 </body>
 </html>
